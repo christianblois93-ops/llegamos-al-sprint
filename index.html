@@ -28,7 +28,8 @@
     document.getElementById("check").addEventListener("click", () => {
       const points = Number(document.getElementById("points").value);
       const days = Number(document.getElementById("days").value);
-      document.getElementById("result").textContent = LABELS[sprintStatus(points, days)];
+      document.getElementById("result").textContent =
+        LABELS[sprintStatus(points, days)] + " (capacidad: " + sprintCapacity(days) + " puntos)";
     });
   </script>
 </body>
