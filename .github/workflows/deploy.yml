@@ -1,0 +1,38 @@
+# CD: every time main changes, run the tests and, if they pass,
+# publish the page on GitHub Pages (our "dev" environment).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:                 # also lets you run it by hand from Actions
+
+permissions:
+  contents: read
+  pages: write                       # allowed to publish to Pages
+  id-token: write
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node --test
+
+  deploy:
+    needs: tests                     # only deploys if the tests passed
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages             # shows up under "Deployments"
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5   # pack the files of the page
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v5            # publish them at the URL
