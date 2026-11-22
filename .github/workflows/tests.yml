@@ -10,8 +10,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest          # a fresh Linux machine borrowed from GitHub
     steps:
-      - uses: actions/checkout@v4   # 1. download the repo's code
-      - uses: actions/setup-node@v4 # 2. install Node (to run JavaScript)
+      - uses: actions/checkout@v7   # 1. download the repo's code
+      - uses: actions/setup-node@v7 # 2. install Node (to run JavaScript)
         with:
           node-version: 22
       - run: node --test            # 3. run sprint.test.js (same as on your PC)
