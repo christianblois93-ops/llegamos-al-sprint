@@ -10,7 +10,7 @@ function sprintCapacity(daysLeft) {
 function sprintStatus(pendingPoints, daysLeft) {
   const capacity = sprintCapacity(daysLeft);
 
-  if (pendingPoints <= capacity * 0.9) return "green"; // comfortable
+  if (pendingPoints <= capacity * 0.8) return "green"; // comfortable
   if (pendingPoints <= capacity) return "yellow";      // tight
   return "red";                                        // won't make it
 }
