@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¿Llegamos al sprint?</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 420px; margin: 40px auto; padding: 0 16px; }
+    label { display: block; margin-top: 12px; }
+    input { width: 100%; padding: 8px; font-size: 16px; }
+    button { margin-top: 16px; padding: 10px 16px; font-size: 16px; }
+    #result { margin-top: 20px; font-size: 24px; }
+  </style>
+</head>
+<body>
+  <h1>¿Llegamos al sprint?</h1>
+
+  <label>Story points pendientes <input id="points" type="number" value="10"></label>
+  <label>Días que quedan <input id="days" type="number" value="5"></label>
+  <button id="check">Calcular</button>
+
+  <p id="result"></p>
+
+  <script src="sprint.js"></script>
+  <script>
+    const LABELS = { green: "🟢 Llegamos", yellow: "🟡 Justo", red: "🔴 No llegamos" };
+
+    document.getElementById("check").addEventListener("click", () => {
+      const points = Number(document.getElementById("points").value);
+      const days = Number(document.getElementById("days").value);
+      document.getElementById("result").textContent = LABELS[sprintStatus(points, days)];
+    });
+  </script>
+</body>
+</html>
