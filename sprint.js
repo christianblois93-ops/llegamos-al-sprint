@@ -15,5 +15,10 @@ function sprintStatus(pendingPoints, daysLeft) {
   return "red";                                        // won't make it
 }
 
+// Points left over (positive) or missing (negative) at the end of the sprint.
+function sprintGap(pendingPoints, daysLeft) {
+  return sprintCapacity(daysLeft) - pendingPoints;
+}
+
 // Lets the tests (Node) use the function too; the browser ignores this line.
-if (typeof module !== "undefined") module.exports = { sprintStatus, sprintCapacity };
+if (typeof module !== "undefined") module.exports = { sprintStatus, sprintCapacity, sprintGap };
