@@ -1,7 +1,11 @@
 // Run with: node --test
 const test = require("node:test");
 const assert = require("node:assert");
-const { sprintStatus } = require("./sprint.js");
+const { sprintStatus, sprintCapacity } = require("./sprint.js");
+
+test("5 days left means capacity 25", () => {
+  assert.strictEqual(sprintCapacity(5), 25);
+});
 
 // 5 days x 5 points = capacity 25
 test("10 points in 5 days is green", () => {
