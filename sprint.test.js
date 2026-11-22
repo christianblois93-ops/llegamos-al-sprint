@@ -1,7 +1,7 @@
 // Run with: node --test
 const test = require("node:test");
 const assert = require("node:assert");
-const { sprintStatus, sprintCapacity } = require("./sprint.js");
+const { sprintStatus, sprintCapacity, sprintGap } = require("./sprint.js");
 
 test("5 days left means capacity 25", () => {
   assert.strictEqual(sprintCapacity(5), 25);
@@ -22,4 +22,12 @@ test("30 points in 5 days is red", () => {
 
 test("pending points with 0 days left is red", () => {
   assert.strictEqual(sprintStatus(3, 0), "red");
+});
+
+test("10 points in 5 days leaves 15 points over", () => {
+  assert.strictEqual(sprintGap(10, 5), 15);
+});
+
+test("30 points in 5 days is 5 points short", () => {
+  assert.strictEqual(sprintGap(30, 5), -5);
 });
